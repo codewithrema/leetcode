@@ -1,2 +1,2 @@
 # leetcode
-https://leetcode.com/
+https://leetcode.com/sugarlemon/
