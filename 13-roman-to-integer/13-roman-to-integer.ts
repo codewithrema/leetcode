@@ -8,13 +8,11 @@ const SYMBOL_MAP: Record<string, number> = {
   M: 1000
 };
 
-const SYMBOL_LIST = Object.keys(SYMBOL_MAP);
-
 function romanToInt(s: string): number {
   return [...s].reduce((acc, cur, i, arr) => {
     if (
       !arr[i + 1] ||
-      SYMBOL_LIST.indexOf(cur) >= SYMBOL_LIST.indexOf(arr[i + 1])
+      SYMBOL_MAP[cur] >= SYMBOL_MAP[arr[i + 1]]
     ) {
       return acc + SYMBOL_MAP[cur];
     }
