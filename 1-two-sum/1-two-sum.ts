@@ -1,18 +1,14 @@
 function twoSum(nums: number[], target: number): number[] {
-  const [addend1, addend2] = nums.reduce<number[]>((acc, cur, i, arr) => {
-    if (acc.length === 2) {
-      return acc;
+  let addends = [-1, -1];
+
+  [...nums].forEach((num, i, arr) => {
+    const ans = arr.indexOf(target - num, i + 1);
+
+    if (ans !== -1) {
+      addends = [i, ans];
+      arr.splice(1);
     }
+  });
 
-    const [ans] = arr.slice(i + 1).filter((num) => {
-      return cur + num === target;
-    });
-
-    return typeof ans === "number" ? [cur, ans] : acc;
-  }, []);
-
-  return [
-    nums.indexOf(addend1),
-    nums.indexOf(addend2, nums.indexOf(addend1) + 1)
-  ];
+  return addends;
 }
