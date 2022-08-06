@@ -1,5 +1,5 @@
 function isPalindrome(x: number): boolean {
-  const arr = [...x.toString()];
+  const arr = [...`${x}`];
 
   return arr.join("") === arr.reverse().join("");
 }
