@@ -20,7 +20,7 @@ function intToRoman(num: number): string {
         return;
       }
 
-      if (tmp >= arr[i + 1] * 9 && key.toString().includes("5")) {
+      if (tmp >= arr[i + 1] * 9 && i % 2 !== 0) {
         ans = `${ans}${SYMBOL_MAP[arr[i + 1]]}${SYMBOL_MAP[arr[i - 1]]}`;
         tmp -= arr[i + 1] * 9;
         return;
