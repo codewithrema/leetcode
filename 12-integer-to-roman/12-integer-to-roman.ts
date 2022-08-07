@@ -9,27 +9,28 @@ const SYMBOL_MAP: Record<string, string> = {
 };
 
 function intToRoman(num: number): string {
+  let tmp = num;
   let ans = "";
 
   Object.keys(SYMBOL_MAP)
     .map(Number)
     .reverse()
     .forEach((key, i, arr) => {
-      if (num < key) {
+      if (tmp < key) {
         return;
       }
 
-      if (num >= arr[i + 1] * 9 && key.toString().includes("5")) {
+      if (tmp >= arr[i + 1] * 9 && key.toString().includes("5")) {
         ans = `${ans}${SYMBOL_MAP[arr[i + 1]]}${SYMBOL_MAP[arr[i - 1]]}`;
-        num -= 9 * arr[i + 1];
+        tmp -= arr[i + 1] * 9;
         return;
       }
 
-      const x = Math.floor(num / key);
+      const x = Math.floor(tmp / key);
 
       if (x === 4) {
         ans = `${ans}${SYMBOL_MAP[key]}${SYMBOL_MAP[arr[i - 1]]}`;
-        num -= 4 * key;
+        tmp -= key * 4;
         return;
       }
 
@@ -37,7 +38,7 @@ function intToRoman(num: number): string {
         .fill("")
         .forEach(() => (ans = `${ans}${SYMBOL_MAP[key]}`));
 
-      num -= key * x;
+      tmp -= key * x;
     });
 
   return ans;
